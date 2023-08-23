@@ -1,0 +1,9 @@
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'gcr.io/Keerthanacicd/api-test-image', '.']
+
+  - name: 'gcr.io/Keerthanacicd/api-test-image'
+    entrypoint: 'pytest'
+    args: ['api_pytest_parameterized.py', 'dag_api_unittest.py']
+
+timeout: '1200s'  # Set a reasonable timeout for your tests

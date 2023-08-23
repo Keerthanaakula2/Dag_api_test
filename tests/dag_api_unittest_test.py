@@ -11,5 +11,5 @@ class TestAPIDAG(unittest.TestCase):
     def test_simple_http_operator(self, mock_http_hook):
         # Test logic, similar to the original unittest code
 
-if __name__ == '__main__':
-    unittest.main()
+     if __name__ == '__main__':
+        unittest.main()

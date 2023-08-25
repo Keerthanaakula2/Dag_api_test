@@ -21,11 +21,9 @@ steps:
       - '--runtime'
       - 'python310'
       - '--trigger-http'
+      - '--set-env-vars=RECIPIENT_EMAIL=kakula@cswg.com,SENDER_EMAIL=techprojectscloud@gmail.com,SMTP_USERNAME=tech_projects,SMTP_PASSWORD=Impetus123'
     dir: 'email_notification_function_directory'
-    secretEnv: ['tech_projects', 'Impetus123']  # Define the secrets to be used as environment variables
-    env:
-      - 'RECIPIENT_EMAIL=kakula@cswg.com'
-      - 'SENDER_EMAIL=techprojectscloud@gmail.com'
     timeout: '1200s'
+
 
 

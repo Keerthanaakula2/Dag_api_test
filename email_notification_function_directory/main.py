@@ -32,4 +32,3 @@ def send_email(request):
         return 'Email sent successfully', 200
     except Exception as e:
         return 'Error sending email: ' + str(e), 500
-

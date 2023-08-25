@@ -8,5 +8,23 @@ steps:
         pytest tests/api_pytest_parameterized_test.py
         pytest tests/dag_api_unittest_test.py
         pytest tests/response_test.py
+    timeout: '1200s'
 
-timeout: '1200s'  # Set a reasonable timeout for your tests
+  # Your existing steps here
+
+  # Add a new step to deploy an email sending function
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args:
+      - 'functions'
+      - 'deploy'
+      - 'send-email-function'
+      - '--runtime'
+      - 'python310'
+      - '--trigger-http'
+    dir: 'email_notification_function_directory'
+    secretEnv: ['tech_projects', 'Impetus123']
+    env:
+      - 'RECIPIENT_EMAIL=kakula@cswg.com'
+      - 'SENDER_EMAIL=techprojectscloud@gmail.com'
+    timeout: '1200s'
+

@@ -1,5 +1,4 @@
 import smtplib
-import os
 from google.cloud import secretmanager
 
 def send_email(request):
@@ -15,8 +14,8 @@ def send_email(request):
     username = client.access_secret_version(request={"name": secret_username}).payload.data.decode("UTF-8")
     password = client.access_secret_version(request={"name": secret_password}).payload.data.decode("UTF-8")
 
-    recipient_email = 'kakula@cswg.com'  # Removed os.environ.get() as it's not necessary
-    sender_email = 'techprojectscloud@gmail.com'  # Removed os.environ.get() as it's not necessary
+    recipient_email = 'kakula@cswg.com'
+    sender_email = 'techprojectscloud@gmail.com'
 
     message = """\
     Subject: Build Successful!

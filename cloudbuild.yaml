@@ -22,9 +22,10 @@ steps:
       - 'python310'
       - '--trigger-http'
     dir: 'email_notification_function_directory'
-    secretEnv: ['tech_projects', 'Impetus123']
+    secretEnv: ['tech_projects', 'Impetus123']  # Define the secrets to be used as environment variables
     env:
       - 'RECIPIENT_EMAIL=kakula@cswg.com'
       - 'SENDER_EMAIL=techprojectscloud@gmail.com'
     timeout: '1200s'
+
 

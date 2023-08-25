@@ -1,0 +1,15 @@
+pytest
+requests
+apache-airflow
+google-cloud-secret-manager==2.4.0
+
+
+
+
+
+
+
+
+
+
+

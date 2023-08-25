@@ -1,4 +1,0 @@
-pytest
-requests
-apache-airflow
-google-cloud-secret-manager

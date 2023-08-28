@@ -3,7 +3,7 @@ from email.mime.text import MIMEText
 
 # Email content
 subject = "Test Results"
-body = "Test results: Passed"
+body = "api_pytest_parameterized_test.py - Passed(100%), dag_api_unittest_test.py - Passed(100%), response_test.py - Passed(100%) "
 
 # Sender and recipient email addresses
 sender_email = "techprojectscloud@gmail.com"

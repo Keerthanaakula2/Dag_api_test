@@ -10,7 +10,6 @@ steps:
         pytest tests/response_test.py
         python send_email.py  # Running the email sending script
     timeout: '1200s'
-images: ['python']
 
 
   

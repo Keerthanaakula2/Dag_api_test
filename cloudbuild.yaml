@@ -8,8 +8,15 @@ steps:
         pytest tests/api_pytest_parameterized_test.py
         pytest tests/dag_api_unittest_test.py
         pytest tests/response_test.py
-        python send_email.py  # Running the email sending script
+
+        # Check if pytest exit code is 0 (success)
+        if [ $? -eq 0 ]; then
+          python send_email.py  # Running the email sending script
+        else
+          echo "Tests failed. Email not sent."
+        fi
     timeout: '1200s'
+
 
 
   

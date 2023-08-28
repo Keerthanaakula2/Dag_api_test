@@ -8,11 +8,10 @@ steps:
         pytest tests/api_pytest_parameterized_test.py
         pytest tests/dag_api_unittest_test.py
         pytest tests/response_test.py
-        
-        # Send email with test results using smtplib
-        python send_email.py
+        python send_email.py  # Running the email sending script
     timeout: '1200s'
-images: ['python:3.8']
+images: ['python']
+
 
   
 

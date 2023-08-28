@@ -10,20 +10,6 @@ steps:
         pytest tests/response_test.py
     timeout: '1200s'
 
-  # Your existing steps here
-
-  # Add a new step to deploy an email sending function
-  - name: 'gcr.io/cloud-builders/gcloud'
-    args:
-      - 'functions'
-      - 'deploy'
-      - 'send-email-function'
-      - '--runtime'
-      - 'python310'
-      - '--trigger-http'
-      - '--set-env-vars=RECIPIENT_EMAIL=kakula@cswg.com,SENDER_EMAIL=techprojectscloud@gmail.com,SMTP_USERNAME=tech_projects,SMTP_PASSWORD=Impetus123'
-    dir: 'email_notification_function_directory'
-    timeout: '1200s'
-
+  
 
 

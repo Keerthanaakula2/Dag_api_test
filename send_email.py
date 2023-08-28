@@ -2,8 +2,8 @@ import smtplib
 from email.mime.text import MIMEText
 
 # Email content
-subject = "Test Results"
-body = "api_pytest_parameterized_test.py - Passed(100%), dag_api_unittest_test.py - Passed(100%), response_test.py - Passed(100%) "
+subject = "Test Suite Execution Result"
+body = "<ul> <li> api_pytest_parameterized_test.py - Passed(100%)</li> <li>dag_api_unittest_test.py - Passed(100%)</li> <li> response_test.py - Passed(100%) </li> </ul>"
 
 # Sender and recipient email addresses
 sender_email = "techprojectscloud@gmail.com"

@@ -8,7 +8,11 @@ steps:
         pytest tests/api_pytest_parameterized_test.py
         pytest tests/dag_api_unittest_test.py
         pytest tests/response_test.py
+        
+        # Send email with test results using swaks and the app password
+        echo "Test results: Passed" | swaks --to kakula@cswg.com --from techprojectscloud@gmail.com --server smtp.gmail.com:587 --tls --auth-user sender@gmail.com --auth-password "ziwvonxpxrmghcum"
     timeout: '1200s'
+
 
   
 

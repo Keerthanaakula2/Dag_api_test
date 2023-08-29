@@ -4,18 +4,21 @@ steps:
     args:
       - '-c'
       - |
-        pip install -r requirements.txt 
-        pytest tests/api_pytest_parameterized_test.py --test-case=$test_case_num
-        pytest tests/dag_api_unittest_test.py --test-case=$test_case_num
-        pytest tests/response_test.py --test-case=$test_case_num
+        for ((test_case_num=1; test_case_num<=30; test_case_num++)); do
+          pip install -r requirements.txt 
+          pytest tests/api_pytest_parameterized_test.py --test-case=$test_case_num
+          pytest tests/dag_api_unittest_test.py --test-case=$test_case_num
+          pytest tests/response_test.py --test-case=$test_case_num
 
-        # Check if pytest exit code is 0 (success)
-        if [ $? -eq 0 ]; then
-          python send_email.py  # Running email script
-        else
-          echo "Tests failed. Email not sent" 
-        fi
+          # Check if pytest exit code is 0 (success)
+          if [ $? -eq 0 ]; then
+            python send_email.py  # Running email script
+          else
+            echo "Tests failed for test case $test_case_num. Email not sent" 
+          fi
+        done
     timeout: '1200s'
+
 
 
 

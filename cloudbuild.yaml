@@ -4,34 +4,16 @@ steps:
     args:
       - '-c'
       - |
-        pip install -r requirements.txt
+        pip install -r requirements.txt 
+        pytest tests/api_pytest_parameterized_test.py --test-case=$test_case_num
+        pytest tests/dag_api_unittest_test.py --test-case=$test_case_num
+        pytest tests/response_test.py --test-case=$test_case_num
 
-        test_attempts=30
-        tests_passed=false
-        
-        for ((i=1; i<=$test_attempts; i++)); do
-          # Simulate different test cases by using a loop variable
-          test_case_num=$((i % 3 + 1))
-          
-          pytest tests/api_pytest_parameterized_test.py --test-case=$test_case_num
-          pytest tests/dag_api_unittest_test.py --test-case=$test_case_num
-          pytest tests/response_test.py --test-case=$test_case_num
-
-          # Check if pytest exit code is 0 (success)
-          if [ $? -eq 0 ]; then
-            tests_passed=true
-            echo "Tests passed on attempt $i"
-            break  # Break the loop if tests pass
-          else
-            echo "Tests failed on attempt $i"
-          fi
-        done
-
-        # Run the email sending script if tests passed at least once
-        if [ "$tests_passed" = true ]; then
-          python send_email.py
+        # Check if pytest exit code is 0 (success)
+        if [ $? -eq 0 ]; then
+          python send_email.py  # Running email script
         else
-          echo "Tests failed. Email not sent."
+          echo "Tests failed. Email not sent" 
         fi
     timeout: '1200s'
 

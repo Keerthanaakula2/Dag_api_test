@@ -4,7 +4,7 @@ from airflow.models import DagBag, TaskInstance, XCom
 from airflow.providers.http.operators.http import SimpleHttpOperator
 from airflow.utils.dates import days_ago
 import unittest
-import sys
+import os
 
 class TestAPIDAG(unittest.TestCase):
 
@@ -20,9 +20,10 @@ class TestAPIDAG(unittest.TestCase):
             # Add more endpoint variations here
         ]
 
-        test_case_num = int(sys.argv[1])
+        test_case_num = int(os.environ.get('TEST_CASE_NUM'))
         self.run_test(endpoints[test_case_num - 1])
 
 if __name__ == '__main__':
     unittest.main()
+
 

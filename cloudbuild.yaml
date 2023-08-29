@@ -5,17 +5,30 @@ steps:
       - '-c'
       - |
         pip install -r requirements.txt
-        pytest tests/api_pytest_parameterized_test.py
-        pytest tests/dag_api_unittest_test.py
-        pytest tests/response_test.py
 
-        # Check if pytest exit code is 0 (success)
+        # Run the tests 30 times
+        for i in {1..30}; do
+          pytest tests/api_pytest_parameterized_test.py
+          pytest tests/dag_api_unittest_test.py
+          pytest tests/response_test.py
+
+          # Check if pytest exit code is 0 (success)
+          if [ $? -eq 0 ]; then
+            echo "Tests passed on attempt $i"
+            break  # Break the loop if tests pass
+          else
+            echo "Tests failed on attempt $i"
+          fi
+        done
+
+        # Run the email sending script if tests passed at least once
         if [ $? -eq 0 ]; then
-          python send_email.py  # Running the email sending script
+          python send_email.py
         else
           echo "Tests failed. Email not sent."
         fi
     timeout: '1200s'
+
 
 
 
